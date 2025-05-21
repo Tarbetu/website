@@ -78,3 +78,6 @@ pub const PRESS_ANY_KEY: &str = r#"
 "#;
 
 pub const TARBETU: &str = "01010100 01100001 01110010 01100010 01100101 01110100 01110101";
+
+pub const ABOUT: &str =
+    "Hey, I am Emrecan from Istanbul/Turkey. My life is kinda boring, so there are not much things to speak. Maybe you would like to check other tabs?";

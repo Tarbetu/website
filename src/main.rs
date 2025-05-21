@@ -1,6 +1,7 @@
 mod text;
 use std::{cell::RefCell, io, rc::Rc};
 
+use color_eyre::owo_colors::OwoColorize;
 use ratatui::{
     layout::{Alignment, Flex},
     prelude::*,
@@ -25,12 +26,26 @@ fn main() -> io::Result<()> {
 }
 
 #[derive(Default, Debug, Copy, Clone, PartialEq, Eq)]
+enum ListStatus {
+    #[default]
+    About = 0,
+    Portfolio,
+    Whoami, // List some hobbies and interests
+    LycianProject,
+    Interests,
+    Music,
+    EchoesFromMyMania,
+    KaraTilkiHiyerarsisi,
+    TechnicalDetails,
+}
+
+#[derive(Default, Debug, Copy, Clone, PartialEq, Eq)]
 enum AppStatus {
     #[default]
     IntroductionStart,
     Introduction(usize),
     IntroductionIdle,
-    Welcoming,
+    List,
 }
 
 impl AppStatus {
@@ -39,11 +54,16 @@ impl AppStatus {
     }
 }
 
-#[derive(Debug, Copy, Clone)]
+#[derive(Debug)]
 struct App {
     status: AppStatus,
     last_instant: Instant,
     intro_finalized: bool,
+    list_status: ListStatus,
+    list_state: ListState,
+    locked_in: bool,
+    scrollbar_state: ScrollbarState,
+    scroll: usize,
 }
 
 impl Default for App {
@@ -52,6 +72,11 @@ impl Default for App {
             status: AppStatus::default(),
             last_instant: Instant::now(),
             intro_finalized: false,
+            list_state: ListState::default().with_selected(Some(0)),
+            list_status: ListStatus::default(),
+            scrollbar_state: ScrollbarState::default(),
+            scroll: 0,
+            locked_in: false,
         }
     }
 }
@@ -64,11 +89,19 @@ impl App {
         app.borrow_mut().last_instant = Instant::now();
 
         let event_app = app.clone();
-        terminal.on_key_event(move |_| {
+        terminal.on_key_event(move |event| {
+            use AppStatus::*;
+
             let mut app = event_app.borrow_mut();
-            if !app.intro_finalized {
-                app.intro_finalized = true;
-                app.status = AppStatus::Welcoming;
+            match app.status {
+                List => {
+                    app.handle_event(event.code)
+                    // app.list_state.select_next();
+                }
+                _ => {
+                    app.intro_finalized = true;
+                    app.status = AppStatus::List;
+                }
             }
         });
 
@@ -100,52 +133,61 @@ impl App {
         Ok(())
     }
 
-    fn render<'a>(&self, frame: &mut Frame<'a>) {
+    fn handle_event(&mut self, key: KeyCode) {
+        match key {
+            KeyCode::Enter if !self.locked_in => self.locked_in = true,
+            KeyCode::Esc if self.locked_in => self.locked_in = false,
+            KeyCode::Down | KeyCode::Char('j') => {
+                self.list_state.select_next();
+            }
+            KeyCode::Up | KeyCode::Char('k') => {
+                self.list_state.select_previous();
+            }
+            _ => {}
+        }
+    }
+
+    fn render<'a>(&mut self, frame: &mut Frame<'a>) {
         use AppStatus::*;
 
         match self.status {
             IntroductionStart => {
-                self.render_introduction(frame, text::NAME1, <&str>::blue);
+                self.render_introduction(frame, text::NAME1, Color::Cyan);
             }
             Introduction(0) => {
-                self.render_introduction(frame, text::NAME1, <&str>::black);
+                self.render_introduction(frame, text::NAME1, Color::LightCyan);
             }
             Introduction(1) => {
-                self.render_introduction(frame, text::NAME2, <&str>::green);
+                self.render_introduction(frame, text::NAME2, Color::Yellow);
             }
             Introduction(2) => {
-                self.render_introduction(frame, text::NAME2, <&str>::black);
+                self.render_introduction(frame, text::NAME2, Color::LightYellow);
             }
             Introduction(3) => {
-                self.render_introduction(frame, text::NAME3, <&str>::red);
+                self.render_introduction(frame, text::NAME3, Color::Red);
             }
             Introduction(4) => {
-                self.render_introduction(frame, text::NAME3, <&str>::black);
+                self.render_introduction(frame, text::NAME3, Color::LightRed);
             }
             Introduction(5) | IntroductionIdle => {
-                self.render_introduction(frame, text::PRESS_ANY_KEY, <&str>::green);
+                self.render_introduction(frame, text::PRESS_ANY_KEY, Color::LightGreen);
             }
             Introduction(6) => {
-                self.render_introduction(frame, text::PRESS_ANY_KEY, <&str>::black);
+                self.render_introduction(frame, text::PRESS_ANY_KEY, Color::Green);
             }
-            Welcoming => {
+            List => {
                 self.render_welcoming(frame);
             }
             _ => {
-                self.render_introduction(frame, text::PRESS_ANY_KEY, <&str>::green);
+                self.render_introduction(frame, text::PRESS_ANY_KEY, Color::Green);
             }
         }
     }
 
-    fn render_introduction<'a>(
-        &self,
-        frame: &mut Frame<'a>,
-        text: &'a str,
-        style: fn(&'a str) -> Span<'a>,
-    ) {
+    fn render_introduction<'a>(&self, frame: &mut Frame<'a>, text: &'a str, color: Color) {
         let ascii_art = Text::from(
             text.split("\n")
-                .map(|line| Line::from(style(line)))
+                .map(|line| Line::from(line.fg(color)))
                 .collect::<Vec<Line>>(),
         );
 
@@ -158,7 +200,7 @@ impl App {
         frame.render_widget(ascii_art, area);
     }
 
-    fn next_status(self) -> AppStatus {
+    fn next_status(&self) -> AppStatus {
         use AppStatus::*;
 
         match self.status {
@@ -172,8 +214,79 @@ impl App {
         }
     }
 
-    fn render_welcoming(&self, frame: &mut Frame) {
-        self.render_introduction(frame, "Welcome", <&str>::red);
+    fn render_welcoming(&mut self, frame: &mut Frame) {
+        self.render_list_view(frame);
+        // self.render_introduction(frame, "Welcome", Color::Red);
+    }
+
+    fn render_list_view(&mut self, frame: &mut Frame) {
+        let area = frame.area();
+        let [header_area, main_area, footer_area] = Layout::vertical([
+            Constraint::Length(2),
+            Constraint::Fill(1),
+            Constraint::Length(1),
+        ])
+        .areas(area);
+
+        let [list_area, item_area] =
+            Layout::horizontal([Constraint::Length(30), Constraint::Fill(1)]).areas(main_area);
+
+        App::render_header(frame, header_area);
+        self.render_footer(frame, footer_area);
+        self.render_list(frame, list_area);
+        // self.render_selected_item(item_area);
+    }
+
+    fn render_header(frame: &mut Frame, area: Rect) {
+        frame.render_widget(Paragraph::new(text::TARBETU).bold().centered(), area);
+    }
+
+    fn render_footer(&self, frame: &mut Frame, area: Rect) {
+        frame.render_widget(
+            Paragraph::new(if !self.locked_in {
+                "Use ↓↑ to move, Enter to locked in"
+            } else {
+                "Use ↓↑ to move, Esc to return menu"
+            })
+            .centered(),
+            area,
+        )
+    }
+
+    fn render_list(&mut self, frame: &mut Frame, area: Rect) {
+        let list_block = Block::new()
+            .borders(Borders::ALL)
+            .border_set(if !self.locked_in {
+                symbols::border::DOUBLE
+            } else {
+                symbols::border::EMPTY
+            })
+            .on_dark_gray()
+            .fg(if !self.locked_in {
+                Color::White
+            } else {
+                Color::Gray
+            });
+
+        let items = vec![
+            ListItem::new("About"),
+            ListItem::new("Portfolio"),
+            ListItem::new("Whoami"),
+            ListItem::new("Lycian Project"),
+            ListItem::new("Interests"),
+            ListItem::new("Some music"),
+            ListItem::new("Echoes from my mania"),
+            ListItem::new("Kara Tilki Hiyerarşisi"),
+            ListItem::new("Technical Details"),
+        ];
+
+        let list = List::new(items)
+            .block(list_block)
+            .highlight_style(Style::default().fg(Color::Magenta))
+            .highlight_symbol(">> ")
+            .highlight_spacing(HighlightSpacing::Always);
+
+        frame.render_stateful_widget(list, area, &mut self.list_state);
     }
 
     /// Centers a [`Rect`] within another [`Rect`] using the provided [`Constraint`]s.
