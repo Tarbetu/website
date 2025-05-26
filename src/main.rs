@@ -3,16 +3,17 @@ use std::{cell::RefCell, io, rc::Rc};
 
 use color_eyre::owo_colors::OwoColorize;
 use ratatui::{
-    layout::{Alignment, Flex},
+    layout::{Alignment, Flex, Offset},
     prelude::*,
     style::{Color, Stylize},
-    symbols::border,
+    symbols::{border, scrollbar},
     widgets::*,
     Frame, Terminal,
 };
 
 use ratzilla::{
     event::{KeyCode, KeyEvent},
+    widgets::Hyperlink,
     DomBackend, WebRenderer,
 };
 
@@ -26,20 +27,6 @@ fn main() -> io::Result<()> {
 }
 
 #[derive(Default, Debug, Copy, Clone, PartialEq, Eq)]
-enum ListStatus {
-    #[default]
-    About = 0,
-    Portfolio,
-    Whoami, // List some hobbies and interests
-    LycianProject,
-    Interests,
-    Music,
-    EchoesFromMyMania,
-    KaraTilkiHiyerarsisi,
-    TechnicalDetails,
-}
-
-#[derive(Default, Debug, Copy, Clone, PartialEq, Eq)]
 enum AppStatus {
     #[default]
     IntroductionStart,
@@ -49,39 +36,155 @@ enum AppStatus {
 }
 
 impl AppStatus {
-    fn max_introduction() -> usize {
+    const fn max_introduction() -> usize {
         6
+    }
+}
+
+#[derive(Default, Debug, Copy, Clone, PartialEq, Eq)]
+enum Background {
+    #[default]
+    First,
+    Second,
+    Third,
+}
+
+impl Background {
+    const fn pastel_orange() -> Color {
+        Color::Rgb(255, 184, 108)
+    }
+
+    const fn electric() -> Color {
+        Color::Rgb(139, 233, 253)
+    }
+
+    const fn pastel_pink() -> Color {
+        Color::Rgb(255, 121, 198)
+    }
+
+    const fn colors(self) -> [Color; 3] {
+        use Background::*;
+        match self {
+            First => [
+                Background::pastel_orange(),
+                Background::electric(),
+                Background::pastel_pink(),
+            ],
+            Second => [
+                Background::electric(),
+                Background::pastel_pink(),
+                Background::pastel_orange(),
+            ],
+            Third => [
+                Background::pastel_pink(),
+                Background::pastel_orange(),
+                Background::electric(),
+            ],
+        }
+    }
+
+    fn render(self, frame: &mut Frame) {
+        let colors = self.colors();
+
+        let [upper_area, middle_area, lower_area] = Layout::horizontal([
+            Constraint::Fill(1),
+            Constraint::Fill(1),
+            Constraint::Fill(1),
+        ])
+        .areas(frame.area());
+
+        let [upper_left_area, upper_center_area, upper_right_area] = Layout::vertical([
+            Constraint::Fill(1),
+            Constraint::Fill(1),
+            Constraint::Fill(1),
+        ])
+        .areas(upper_area);
+
+        let [middle_left_area, middle_center_area, middle_right_area] = Layout::vertical([
+            Constraint::Fill(1),
+            Constraint::Fill(1),
+            Constraint::Fill(1),
+        ])
+        .areas(middle_area);
+
+        let [lower_left_area, lower_center_area, lower_right_area] = Layout::vertical([
+            Constraint::Fill(1),
+            Constraint::Fill(1),
+            Constraint::Fill(1),
+        ])
+        .areas(lower_area);
+
+        frame.render_widget(Block::default().bg(colors[0]), upper_left_area);
+        frame.render_widget(Block::default().bg(colors[1]), upper_center_area);
+        frame.render_widget(Block::default().bg(colors[2]), upper_right_area);
+
+        frame.render_widget(Block::default().bg(colors[1]), middle_left_area);
+        frame.render_widget(Block::default().bg(colors[2]), middle_center_area);
+        frame.render_widget(Block::default().bg(colors[0]), middle_right_area);
+
+        frame.render_widget(Block::default().bg(colors[2]), lower_left_area);
+        frame.render_widget(Block::default().bg(colors[0]), lower_center_area);
+        frame.render_widget(Block::default().bg(colors[1]), lower_right_area);
+    }
+
+    fn next(self) -> Self {
+        use Background::*;
+
+        match self {
+            First => Second,
+            Second => Third,
+            Third => First,
+        }
     }
 }
 
 #[derive(Debug)]
 struct App {
+    title: &'static str,
     status: AppStatus,
     last_instant: Instant,
     intro_finalized: bool,
-    list_status: ListStatus,
     list_state: ListState,
     locked_in: bool,
     scrollbar_state: ScrollbarState,
-    scroll: usize,
+    scroll: u16,
+    background: Background,
 }
 
 impl Default for App {
     fn default() -> Self {
         Self {
+            title: text::TARBETU,
             status: AppStatus::default(),
             last_instant: Instant::now(),
             intro_finalized: false,
             list_state: ListState::default().with_selected(Some(0)),
-            list_status: ListStatus::default(),
             scrollbar_state: ScrollbarState::default(),
             scroll: 0,
             locked_in: false,
+            background: Background::default(),
         }
     }
 }
 
 impl App {
+    const fn menu_length() -> usize {
+        7
+    }
+
+    // fn menu() -> Vec<ListItem<'static>> {
+    fn menu() -> [ListItem<'static>; App::menu_length()] {
+        [
+            ListItem::new("./tarbetu"),
+            ListItem::new("./portfolio"),
+            ListItem::new("./translations"),
+            ListItem::new("./lycian"),
+            ListItem::new("./personal_soundtrack"),
+            ListItem::new("./echoes_from_my_mania"),
+            ListItem::new("./kara_tilki_hiyerarsisi"),
+        ]
+    }
+
     fn run(app: Rc<RefCell<Self>>) -> io::Result<()> {
         let backend = DomBackend::new()?;
         let terminal = Terminal::new(backend)?;
@@ -128,6 +231,11 @@ impl App {
                 app.last_instant = Instant::now()
             }
 
+            if app.intro_finalized && app.last_instant.elapsed() >= Duration::from_millis(500) {
+                app.background = app.background.next();
+                app.last_instant = Instant::now()
+            }
+
             app.render(frame);
         });
         Ok(())
@@ -137,14 +245,47 @@ impl App {
         match key {
             KeyCode::Enter if !self.locked_in => self.locked_in = true,
             KeyCode::Esc if self.locked_in => self.locked_in = false,
-            KeyCode::Down | KeyCode::Char('j') => {
-                self.list_state.select_next();
+            KeyCode::Char('t') if self.title == text::TARBETU => {
+                self.title = text::TARBETU1;
+            }
+            KeyCode::Char('a') if self.title == text::TARBETU1 => {
+                self.title = text::TARBETU2;
+            }
+            KeyCode::Char('r') if self.title == text::TARBETU2 => {
+                self.title = text::TARBETU3;
+            }
+            KeyCode::Char('b') if self.title == text::TARBETU3 => {
+                self.title = text::TARBETU4;
+            }
+            KeyCode::Char('e') if self.title == text::TARBETU4 => {
+                self.title = text::TARBETU5;
+            }
+            KeyCode::Char('t') if self.title == text::TARBETU5 => {
+                self.title = text::TARBETU6;
+            }
+            KeyCode::Char('u') if self.title == text::TARBETU6 => {
+                self.title = text::TARBETU7;
             }
             KeyCode::Up | KeyCode::Char('k') => {
-                self.list_state.select_previous();
+                if self.locked_in {
+                    self.scroll = self.scroll.saturating_sub(1);
+                } else {
+                    self.scroll = 0;
+                    self.list_state.select_previous();
+                }
+            }
+            KeyCode::Down | KeyCode::Char('j') => {
+                if self.locked_in {
+                    self.scroll = self.scroll.saturating_add(1);
+                } else {
+                    self.scroll = 0;
+                    self.list_state.select_next();
+                }
             }
             _ => {}
         }
+
+        self.scrollbar_state = self.scrollbar_state.position(self.scroll as usize);
     }
 
     fn render<'a>(&mut self, frame: &mut Frame<'a>) {
@@ -176,7 +317,8 @@ impl App {
                 self.render_introduction(frame, text::PRESS_ANY_KEY, Color::Green);
             }
             List => {
-                self.render_welcoming(frame);
+                self.background.render(frame);
+                self.render_list_view(frame);
             }
             _ => {
                 self.render_introduction(frame, text::PRESS_ANY_KEY, Color::Green);
@@ -209,44 +351,53 @@ impl App {
                 Introduction(number + 1)
             }
             Introduction(_) => IntroductionIdle,
-            IntroductionIdle => IntroductionIdle,
             _ => self.status,
         }
     }
 
-    fn render_welcoming(&mut self, frame: &mut Frame) {
-        self.render_list_view(frame);
-        // self.render_introduction(frame, "Welcome", Color::Red);
-    }
-
     fn render_list_view(&mut self, frame: &mut Frame) {
         let area = frame.area();
-        let [header_area, main_area, footer_area] = Layout::vertical([
+        let [header_area, main_area, _, footer_area] = Layout::vertical([
             Constraint::Length(2),
             Constraint::Fill(1),
+            Constraint::Length(1),
             Constraint::Length(1),
         ])
         .areas(area);
 
-        let [list_area, item_area] =
-            Layout::horizontal([Constraint::Length(30), Constraint::Fill(1)]).areas(main_area);
+        let [_, list_area, _, content_area, _] = Layout::horizontal([
+            Constraint::Length(1),
+            Constraint::Length(30),
+            Constraint::Length(1),
+            Constraint::Fill(1),
+            Constraint::Length(1),
+        ])
+        .areas(main_area);
 
-        App::render_header(frame, header_area);
+        self.clear_areas(frame, &[list_area, content_area]);
+
+        self.render_header(frame, header_area);
         self.render_footer(frame, footer_area);
         self.render_list(frame, list_area);
-        // self.render_selected_item(item_area);
+        self.render_content(frame, content_area);
     }
 
-    fn render_header(frame: &mut Frame, area: Rect) {
-        frame.render_widget(Paragraph::new(text::TARBETU).bold().centered(), area);
+    fn clear_areas(&self, frame: &mut Frame, areas: &[Rect]) {
+        for area in areas {
+            frame.render_widget(Clear, *area);
+        }
+    }
+
+    fn render_header(&self, frame: &mut Frame, area: Rect) {
+        frame.render_widget(Paragraph::new(self.title).bold().centered(), area);
     }
 
     fn render_footer(&self, frame: &mut Frame, area: Rect) {
         frame.render_widget(
             Paragraph::new(if !self.locked_in {
-                "Use ↓↑ to move, Enter to locked in"
+                "Use ↓↑ or j/k to navigate, Enter to locked in"
             } else {
-                "Use ↓↑ to move, Esc to return menu"
+                "Use ↓↑ or j/k to scroll, Esc to return menu"
             })
             .centered(),
             area,
@@ -254,39 +405,89 @@ impl App {
     }
 
     fn render_list(&mut self, frame: &mut Frame, area: Rect) {
-        let list_block = Block::new()
-            .borders(Borders::ALL)
+        let list_block = Block::bordered()
             .border_set(if !self.locked_in {
-                symbols::border::DOUBLE
+                symbols::border::QUADRANT_OUTSIDE
             } else {
                 symbols::border::EMPTY
             })
-            .on_dark_gray()
+            .border_style(Style::default().fg(Color::LightMagenta))
+            .bg(Color::Rgb(15, 15, 20))
             .fg(if !self.locked_in {
-                Color::White
+                Color::LightCyan
             } else {
-                Color::Gray
+                Color::Cyan
             });
 
-        let items = vec![
-            ListItem::new("About"),
-            ListItem::new("Portfolio"),
-            ListItem::new("Whoami"),
-            ListItem::new("Lycian Project"),
-            ListItem::new("Interests"),
-            ListItem::new("Some music"),
-            ListItem::new("Echoes from my mania"),
-            ListItem::new("Kara Tilki Hiyerarşisi"),
-            ListItem::new("Technical Details"),
-        ];
-
-        let list = List::new(items)
+        let list = List::new(App::menu())
             .block(list_block)
-            .highlight_style(Style::default().fg(Color::Magenta))
-            .highlight_symbol(">> ")
+            .highlight_style(Style::default().fg(Color::LightMagenta))
+            .highlight_symbol("▶ ")
             .highlight_spacing(HighlightSpacing::Always);
 
         frame.render_stateful_widget(list, area, &mut self.list_state);
+    }
+
+    fn render_content(&mut self, frame: &mut Frame, area: Rect) {
+        let content_block = Block::bordered()
+            .border_set(if self.locked_in {
+                symbols::border::QUADRANT_OUTSIDE
+            } else {
+                symbols::border::EMPTY
+            })
+            .border_style(Style::default().fg(Color::LightMagenta))
+            .bg(Color::Rgb(15, 15, 20))
+            .padding(Padding::new(1, 2, 0, 0))
+            .fg(Color::LightCyan);
+
+        self.render_text(
+            frame,
+            content_block,
+            area,
+            match self.list_state.selected() {
+                Some(0) => text::ABOUT,
+                Some(1) => text::PORTFOLIO,
+                Some(2) => text::TRANSLATIONS,
+                Some(3) => text::LYCIAN_PROJECT,
+                Some(4) => text::MUSIC,
+                Some(5) => text::ECHOES,
+                Some(6) => text::KTH,
+                _ => "",
+            },
+        );
+    }
+
+    fn render_text(&mut self, frame: &mut Frame, block: Block, area: Rect, text: &'static str) {
+        let lines: Vec<Line> = text
+            .split('\n')
+            .map(|line| {
+                if line.starts_with("http") {
+                    Line::from(
+                        Span::from(line)
+                            .fg(Color::LightBlue)
+                            .style(Modifier::SLOW_BLINK),
+                    )
+                } else {
+                    Line::from(line)
+                }
+            })
+            .collect();
+
+        self.scrollbar_state = self.scrollbar_state.content_length(lines.len());
+
+        let text = Paragraph::new(lines)
+            .block(block)
+            .alignment(Alignment::Left)
+            .wrap(Wrap { trim: true })
+            .scroll((self.scroll, 0));
+
+        frame.render_widget(text, area);
+
+        frame.render_stateful_widget(
+            Scrollbar::new(ScrollbarOrientation::VerticalRight).symbols(scrollbar::VERTICAL),
+            area,
+            &mut self.scrollbar_state,
+        );
     }
 
     /// Centers a [`Rect`] within another [`Rect`] using the provided [`Constraint`]s.
