@@ -1,21 +1,16 @@
 mod text;
 use std::{cell::RefCell, io, rc::Rc};
 
-use color_eyre::owo_colors::OwoColorize;
 use ratatui::{
-    layout::{Alignment, Flex, Offset},
+    layout::{Alignment, Flex},
     prelude::*,
     style::{Color, Stylize},
-    symbols::{border, scrollbar},
+    symbols::scrollbar,
     widgets::*,
     Frame, Terminal,
 };
 
-use ratzilla::{
-    event::{KeyCode, KeyEvent},
-    widgets::Hyperlink,
-    DomBackend, WebRenderer,
-};
+use ratzilla::{event::KeyCode, DomBackend, WebRenderer};
 
 use web_time::{Duration, Instant};
 
