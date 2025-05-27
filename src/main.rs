@@ -456,15 +456,13 @@ impl App {
         let lines: Vec<Line> = text
             .split('\n')
             .map(|line| {
-                if line.starts_with("http") {
-                    Line::from(
-                        Span::from(line)
-                            .fg(Color::LightBlue)
-                            .style(Modifier::SLOW_BLINK),
-                    )
+                Line::from(if line.starts_with(">>>") {
+                    line.add_modifier(Modifier::BOLD)
+                } else if line.starts_with("http") {
+                    line.light_blue().style(Modifier::SLOW_BLINK)
                 } else {
-                    Line::from(line)
-                }
+                    Span::from(line)
+                })
             })
             .collect();
 

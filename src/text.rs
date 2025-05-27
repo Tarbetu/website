@@ -102,7 +102,7 @@ Now I’m building my own programming language. Why? Because apparently I have a
 
 Still, I like to pretend I’m a social creature. You’ll find me coding at some cozy café in Kadıköy, ordering a filter coffee like it’s a personality trait. It’s the best way to simulate human interaction without actually being annoying.
 
-So yeah — it’s more fun to compute...
+So yeah — it’s more fun to compute.
 (gdb) info registers
 rax            0x31313131          // main routine
 rbx            0xBAADCAFE          // caffeine
@@ -233,10 +233,10 @@ Türkçe:
 https://emrecansuster.com/yankilar"#;
 
 pub const KTH: &str = ">>> ./kara_tilki_hiyerarsisi
-Remember that sci-fi novel I mentioned in `./tarbetu`?  
+Remember that sci-fi novel I mentioned in the debug output of `./tarbetu`?  
 Well, I actually reached out to a publishing house — but the process took much longer than expected. It was a short-lived venture, and they tried to apply for funding from the Turkish Ministry of Culture and Tourism... using *this* novel.
 
-Yes, they really thought they’d get government support for a book centered around the fall of the Republic of Turkey, anarchism, mild fetishes, and assorted ideological chaos. Turns out they hadn’t even read it. Not shocking when you consider the publishing houses in Turkey.
+Yes, they really thought they’d get government support for a book centered around the fall of the Republic of Turkey, anarchism, mild fetishes, etc. Turns out they hadn’t even read it. Not shocking when you consider the working styles of publishing houses in Turkey.
 
 The novel lived on my personal website for years. Now, thanks to AI tools, I’ve translated it into English — with some manual clean-up. It covers sensitive themes, so consider yourself warned.
 
