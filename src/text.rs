@@ -191,6 +191,7 @@ Type O Negative - Dead Again
 Tiamat - Prey
 Samael - Reign of Light
 Kurban - Yobaz
+Arkona - Goi, Rode, Goi!
 Einstürzende Neubauten - Alles in Allem
 Mindless Faith - Manifest Destiny
 Sirenia - An Elixir for the Existence 
