@@ -207,6 +207,7 @@ En Esch - Cheesy
 mind.in.a.box - Dreamweb
 Krystal System - Underground
 Collide - Chasing the Ghost
+The Secret Meeting - Ultrashiver
 Android Lust - The Divide
 Russkaja - Energia
 CCCP Fedeli Alla Linea - Epica Etnica Etnica Pathos
