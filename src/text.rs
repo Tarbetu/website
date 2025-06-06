@@ -246,6 +246,6 @@ Yes, they really thought they’d get government support for a book centered aro
 The novel lived on my personal website for years. Now, thanks to AI tools, I’ve translated it into English — with some manual clean-up. It covers sensitive themes, so consider yourself warned.
 
 English:  
-https://emrecansuster.com/vulpo-noir
+https://emrecansuster.com/hierarchyofvulponoir/
 Türkçe:  
-https://emrecansuster.com/kara-tilki-hiyerarsisi";
+https://emrecansuster.com/karatilkihiyerarsisi/";
