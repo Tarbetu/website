@@ -193,6 +193,7 @@ Type O Negative - Dead Again
 Tiamat - Prey
 Samael - Reign of Light
 Kurban - Yobaz
+Arkona - Goi, Rode, Goi!
 Einstürzende Neubauten - Alles in Allem
 Mindless Faith - Manifest Destiny
 Sirenia - An Elixir for the Existence 
@@ -210,6 +211,7 @@ En Esch - Cheesy
 mind.in.a.box - Dreamweb
 Krystal System - Underground
 Collide - Chasing the Ghost
+The Secret Meeting - Ultrashiver
 Android Lust - The Divide
 Russkaja - Energia
 CCCP Fedeli Alla Linea - Epica Etnica Etnica Pathos
