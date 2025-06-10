@@ -178,9 +178,11 @@ This is my personal website so I can list anything I want.
 
 Rotting Christ - Theogonia 
 Rotting Christ - Triarchy of the Lost Lovers
+Thou Art Lord - DV6
 (I can list every Rotting Christ album except for the last one)
 Moonspell - Wolfheart
 Moonspell - Night Eternal
+Moonspell - Sin/Pecado
 Septicflesh - Revolution DNA
 Septicflesh - Communion
 Nightfall - Diva Futura
@@ -199,6 +201,7 @@ Sirenia - At Sixes and Sevens
 Threatre of Tragedy - Aegis
 Tristania - Widow's Weeds
 Siouxsie & The Banshees - Kaleidoscope
+Sisters Of Mercy - Floodlang
 Velvet Acid Christ - The Art of Breaking Apart
 Angelspit - 100%
 Skinny Puppy - Remission
@@ -243,6 +246,6 @@ Yes, they really thought they’d get government support for a book centered aro
 The novel lived on my personal website for years. Now, thanks to AI tools, I’ve translated it into English — with some manual clean-up. It covers sensitive themes, so consider yourself warned.
 
 English:  
-https://emrecansuster.com/vulpo-noir
+https://emrecansuster.com/hierarchyofvulponoir/
 Türkçe:  
-https://emrecansuster.com/kara-tilki-hiyerarsisi";
+https://emrecansuster.com/karatilkihiyerarsisi/";
