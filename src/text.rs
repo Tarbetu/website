@@ -74,7 +74,7 @@ pub const PRESS_ANY_KEY: &str = r#"
                         |__>            || ||      || ||
 
 
-     hit any key to continue
+     hit any key to continue or wait a little (not mobile friendly)
 "#;
 
 pub const TARBETU: &str = "01010100 01100001 01110010 01100010 01100101 01110100 01110101";

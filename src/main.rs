@@ -139,6 +139,7 @@ struct App {
     status: AppStatus,
     last_instant: Instant,
     intro_finalized: bool,
+    intro_finalized_at: Instant,
     list_state: ListState,
     locked_in: bool,
     scrollbar_state: ScrollbarState,
@@ -153,6 +154,7 @@ impl Default for App {
             status: AppStatus::default(),
             last_instant: Instant::now(),
             intro_finalized: false,
+            intro_finalized_at: Instant::now(),
             list_state: ListState::default().with_selected(Some(0)),
             scrollbar_state: ScrollbarState::default(),
             scroll: 0,
@@ -198,6 +200,7 @@ impl App {
                 }
                 _ => {
                     app.intro_finalized = true;
+                    app.intro_finalized_at = Instant::now();
                     app.status = AppStatus::List;
                 }
             }
@@ -211,6 +214,7 @@ impl App {
             if !app.intro_finalized && app.last_instant.elapsed() >= Duration::from_millis(500) {
                 if next_status == app.status {
                     app.intro_finalized = true;
+                    app.intro_finalized_at = Instant::now();
                 }
 
                 app.status = app.next_status();
@@ -219,7 +223,7 @@ impl App {
 
             if app.intro_finalized
                 && app.status == AppStatus::IntroductionIdle
-                && app.last_instant.elapsed() >= Duration::from_secs(2)
+                && app.last_instant.elapsed() >= Duration::from_secs(500)
             {
                 app.status = AppStatus::Introduction(AppStatus::max_introduction() - 1);
                 app.intro_finalized = false;
@@ -229,6 +233,12 @@ impl App {
             if app.intro_finalized && app.last_instant.elapsed() >= Duration::from_millis(500) {
                 app.background = app.background.next();
                 app.last_instant = Instant::now()
+            }
+
+            if app.status == AppStatus::IntroductionIdle
+                && app.intro_finalized_at.elapsed() >= Duration::from_secs(5)
+            {
+                app.status = AppStatus::List;
             }
 
             app.render(frame);
@@ -331,7 +341,7 @@ impl App {
         let area = App::center(
             frame.area(),
             Constraint::Length(ascii_art.width() as u16),
-            Constraint::Percentage(50),
+            Constraint::Percentage(60),
         );
 
         frame.render_widget(ascii_art, area);
