@@ -45,35 +45,35 @@ enum Background {
 }
 
 impl Background {
-    const fn pastel_orange() -> Color {
-        Color::Rgb(255, 184, 108)
+    const fn blue_magenta() -> Color {
+        Color::Rgb(100, 0, 200)
     }
 
-    const fn electric() -> Color {
-        Color::Rgb(139, 233, 253)
+    const fn green() -> Color {
+        Color::Rgb(0x37, 0x5D, 0x37)
     }
 
-    const fn pastel_pink() -> Color {
-        Color::Rgb(255, 121, 198)
+    const fn lilac() -> Color {
+        Color::Rgb(200, 162, 200)
     }
 
     const fn colors(self) -> [Color; 3] {
         use Background::*;
         match self {
             First => [
-                Background::pastel_orange(),
-                Background::electric(),
-                Background::pastel_pink(),
+                Background::blue_magenta(),
+                Background::lilac(),
+                Background::green(),
             ],
             Second => [
-                Background::electric(),
-                Background::pastel_pink(),
-                Background::pastel_orange(),
+                Background::lilac(),
+                Background::green(),
+                Background::blue_magenta(),
             ],
             Third => [
-                Background::pastel_pink(),
-                Background::pastel_orange(),
-                Background::electric(),
+                Background::green(),
+                Background::blue_magenta(),
+                Background::lilac(),
             ],
         }
     }
@@ -166,7 +166,7 @@ impl Default for App {
 
 impl App {
     const fn menu_length() -> usize {
-        7
+        6
     }
 
     // fn menu() -> Vec<ListItem<'static>> {
@@ -177,7 +177,7 @@ impl App {
             ListItem::new("./translations"),
             ListItem::new("./lycian"),
             ListItem::new("./personal_soundtrack"),
-            ListItem::new("./echoes_from_my_mania"),
+            // ListItem::new("./echoes_from_my_mania"),
             ListItem::new("./kara_tilki_hiyerarsisi"),
         ]
     }
@@ -416,7 +416,7 @@ impl App {
             } else {
                 symbols::border::EMPTY
             })
-            .border_style(Style::default().fg(Color::LightMagenta))
+            .border_style(Style::default().fg(Color::DarkGray))
             .bg(Color::Rgb(15, 15, 20))
             .fg(if !self.locked_in {
                 Color::LightCyan
@@ -426,7 +426,7 @@ impl App {
 
         let list = List::new(App::menu())
             .block(list_block)
-            .highlight_style(Style::default().fg(Color::LightMagenta))
+            .highlight_style(Style::default().fg(Color::White))
             .highlight_symbol("▶ ")
             .highlight_spacing(HighlightSpacing::Always);
 
@@ -440,7 +440,7 @@ impl App {
             } else {
                 symbols::border::EMPTY
             })
-            .border_style(Style::default().fg(Color::LightMagenta))
+            .border_style(Style::default().fg(Color::DarkGray))
             .bg(Color::Rgb(15, 15, 20))
             .padding(Padding::new(1, 2, 0, 0))
             .fg(Color::LightCyan);
@@ -455,8 +455,8 @@ impl App {
                 Some(2) => text::TRANSLATIONS,
                 Some(3) => text::LYCIAN_PROJECT,
                 Some(4) => text::MUSIC,
-                Some(5) => text::ECHOES,
-                Some(6) => text::KTH,
+                // Some(5) => text::ECHOES,
+                Some(5) => text::KTH,
                 _ => "",
             },
         );

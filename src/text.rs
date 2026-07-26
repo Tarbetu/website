@@ -1,22 +1,22 @@
 pub const NAME1: &str = "
-░▒▓████████▓▒░▒▓██████████████▓▒░░▒▓███████▓▒░░▒▓████████▓▒░▒▓██████▓▒░ ░▒▓██████▓▒░░▒▓███████▓▒░  
-░▒▓█▓▒░      ░▒▓█▓▒░░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░     ░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░ 
-░▒▓█▓▒░      ░▒▓█▓▒░░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░     ░▒▓█▓▒░      ░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░ 
-░▒▓██████▓▒░ ░▒▓█▓▒░░▒▓█▓▒░░▒▓█▓▒░▒▓███████▓▒░░▒▓██████▓▒░░▒▓█▓▒░      ░▒▓████████▓▒░▒▓█▓▒░░▒▓█▓▒░ 
-░▒▓█▓▒░      ░▒▓█▓▒░░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░     ░▒▓█▓▒░      ░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░ 
-░▒▓█▓▒░      ░▒▓█▓▒░░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░     ░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░ 
-░▒▓████████▓▒░▒▓█▓▒░░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░▒▓████████▓▒░▒▓██████▓▒░░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░ 
-                                                                                                   
-                                                                                                   
-             ░▒▓███████▓▒░▒▓█▓▒░░▒▓█▓▒░░▒▓███████▓▒░▒▓████████▓▒░▒▓████████▓▒░▒▓███████▓▒░         
-            ░▒▓█▓▒░      ░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░         ░▒▓█▓▒░   ░▒▓█▓▒░      ░▒▓█▓▒░░▒▓█▓▒░        
-            ░▒▓█▓▒░      ░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░         ░▒▓█▓▒░   ░▒▓█▓▒░      ░▒▓█▓▒░░▒▓█▓▒░        
-             ░▒▓██████▓▒░░▒▓█▓▒░░▒▓█▓▒░░▒▓██████▓▒░   ░▒▓█▓▒░   ░▒▓██████▓▒░ ░▒▓███████▓▒░         
-                   ░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░      ░▒▓█▓▒░  ░▒▓█▓▒░   ░▒▓█▓▒░      ░▒▓█▓▒░░▒▓█▓▒░        
-                   ░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░      ░▒▓█▓▒░  ░▒▓█▓▒░   ░▒▓█▓▒░      ░▒▓█▓▒░░▒▓█▓▒░        
-            ░▒▓███████▓▒░ ░▒▓██████▓▒░░▒▓███████▓▒░   ░▒▓█▓▒░   ░▒▓████████▓▒░▒▓█▓▒░░▒▓█▓▒░        
-                                                                                                   
-                                                                                                   
+░▒▓████████▓▒░▒▓██████████████▓▒░░▒▓███████▓▒░░▒▓████████▓▒░▒▓██████▓▒░ ░▒▓██████▓▒░░▒▓███████▓▒░
+░▒▓█▓▒░      ░▒▓█▓▒░░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░     ░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░
+░▒▓█▓▒░      ░▒▓█▓▒░░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░     ░▒▓█▓▒░      ░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░
+░▒▓██████▓▒░ ░▒▓█▓▒░░▒▓█▓▒░░▒▓█▓▒░▒▓███████▓▒░░▒▓██████▓▒░░▒▓█▓▒░      ░▒▓████████▓▒░▒▓█▓▒░░▒▓█▓▒░
+░▒▓█▓▒░      ░▒▓█▓▒░░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░     ░▒▓█▓▒░      ░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░
+░▒▓█▓▒░      ░▒▓█▓▒░░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░     ░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░
+░▒▓████████▓▒░▒▓█▓▒░░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░▒▓████████▓▒░▒▓██████▓▒░░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░
+
+
+             ░▒▓███████▓▒░▒▓█▓▒░░▒▓█▓▒░░▒▓███████▓▒░▒▓████████▓▒░▒▓████████▓▒░▒▓███████▓▒░
+            ░▒▓█▓▒░      ░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░         ░▒▓█▓▒░   ░▒▓█▓▒░      ░▒▓█▓▒░░▒▓█▓▒░
+            ░▒▓█▓▒░      ░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░         ░▒▓█▓▒░   ░▒▓█▓▒░      ░▒▓█▓▒░░▒▓█▓▒░
+             ░▒▓██████▓▒░░▒▓█▓▒░░▒▓█▓▒░░▒▓██████▓▒░   ░▒▓█▓▒░   ░▒▓██████▓▒░ ░▒▓███████▓▒░
+                   ░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░      ░▒▓█▓▒░  ░▒▓█▓▒░   ░▒▓█▓▒░      ░▒▓█▓▒░░▒▓█▓▒░
+                   ░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░      ░▒▓█▓▒░  ░▒▓█▓▒░   ░▒▓█▓▒░      ░▒▓█▓▒░░▒▓█▓▒░
+            ░▒▓███████▓▒░ ░▒▓██████▓▒░░▒▓███████▓▒░   ░▒▓█▓▒░   ░▒▓████████▓▒░▒▓█▓▒░░▒▓█▓▒░
+
+
 ";
 
 pub const NAME2: &str = "
@@ -27,7 +27,7 @@ pub const NAME2: &str = "
 ▓▓▓▓▓▓▓      ▓▓▓▓        ▓▓       ▓▓▓      ▓▓▓▓  ▓▓▓▓▓▓▓▓  ▓▓▓▓  ▓▓  ▓  ▓  ▓▓▓▓▓▓▓
 ███████  ████████  █  █  ██  ███  ███  ████████  ████  ██        ██  ██    ███████
 ███████        ██  ████  ██  ████  ██        ███      ███  ████  ██  ███   ███████
-                                                                                    
+
 ░░░░░░░░░░░░░░      ░░░  ░░░░  ░░░      ░░░        ░░        ░░       ░░░░░░░░░░░░
 ▒▒▒▒▒▒▒▒▒▒▒▒▒  ▒▒▒▒▒▒▒▒  ▒▒▒▒  ▒▒  ▒▒▒▒▒▒▒▒▒▒▒  ▒▒▒▒▒  ▒▒▒▒▒▒▒▒  ▒▒▒▒  ▒▒▒▒▒▒▒▒▒▒▒
 ▓▓▓▓▓▓▓▓▓▓▓▓▓▓      ▓▓▓  ▓▓▓▓  ▓▓▓      ▓▓▓▓▓▓  ▓▓▓▓▓      ▓▓▓▓       ▓▓▓▓▓▓▓▓▓▓▓▓
@@ -36,25 +36,25 @@ pub const NAME2: &str = "
 ";
 
 pub const NAME3: &str = "
-▓█████  ███▄ ▄███▓ ██▀███  ▓█████  ▄████▄   ▄▄▄       ███▄    █ 
-▓█   ▀ ▓██▒▀█▀ ██▒▓██ ▒ ██▒▓█   ▀ ▒██▀ ▀█  ▒████▄     ██ ▀█   █ 
+▓█████  ███▄ ▄███▓ ██▀███  ▓█████  ▄████▄   ▄▄▄       ███▄    █
+▓█   ▀ ▓██▒▀█▀ ██▒▓██ ▒ ██▒▓█   ▀ ▒██▀ ▀█  ▒████▄     ██ ▀█   █
 ▒███   ▓██    ▓██░▓██ ░▄█ ▒▒███   ▒▓█    ▄ ▒██  ▀█▄  ▓██  ▀█ ██▒
 ▒▓█  ▄ ▒██    ▒██ ▒██▀▀█▄  ▒▓█  ▄ ▒▓▓▄ ▄██▒░██▄▄▄▄██ ▓██▒  ▐▌██▒
 ░▒████▒▒██▒   ░██▒░██▓ ▒██▒░▒████▒▒ ▓███▀ ░ ▓█   ▓██▒▒██░   ▓██░
-░░ ▒░ ░░ ▒░   ░  ░░ ▒▓ ░▒▓░░░ ▒░ ░░ ░▒ ▒  ░ ▒▒   ▓▒█░░ ▒░   ▒ ▒ 
+░░ ▒░ ░░ ▒░   ░  ░░ ▒▓ ░▒▓░░░ ▒░ ░░ ░▒ ▒  ░ ▒▒   ▓▒█░░ ▒░   ▒ ▒
  ░ ░  ░░  ░      ░  ░▒ ░ ▒░ ░ ░  ░  ░  ▒     ▒   ▒▒ ░░ ░░   ░ ▒░
-   ░   ░      ░     ░░   ░    ░   ░          ░   ▒      ░   ░ ░ 
-   ░  ░       ░      ░        ░  ░░ ░            ░  ░         ░ 
-                                  ░                             
-     ██████  █    ██   ██████ ▄▄▄█████▓▓█████  ██▀███           
-   ▒██    ▒  ██  ▓██▒▒██    ▒ ▓  ██▒ ▓▒▓█   ▀ ▓██ ▒ ██▒         
-   ░ ▓██▄   ▓██  ▒██░░ ▓██▄   ▒ ▓██░ ▒░▒███   ▓██ ░▄█ ▒         
-     ▒   ██▒▓▓█  ░██░  ▒   ██▒░ ▓██▓ ░ ▒▓█  ▄ ▒██▀▀█▄           
-   ▒██████▒▒▒▒█████▓ ▒██████▒▒  ▒██▒ ░ ░▒████▒░██▓ ▒██▒         
-   ▒ ▒▓▒ ▒ ░░▒▓▒ ▒ ▒ ▒ ▒▓▒ ▒ ░  ▒ ░░   ░░ ▒░ ░░ ▒▓ ░▒▓░         
-   ░ ░▒  ░ ░░░▒░ ░ ░ ░ ░▒  ░ ░    ░     ░ ░  ░  ░▒ ░ ▒░         
-   ░  ░  ░   ░░░ ░ ░ ░  ░  ░    ░         ░     ░░   ░          
-         ░     ░           ░              ░  ░   ░              
+   ░   ░      ░     ░░   ░    ░   ░          ░   ▒      ░   ░ ░
+   ░  ░       ░      ░        ░  ░░ ░            ░  ░         ░
+                                  ░
+     ██████  █    ██   ██████ ▄▄▄█████▓▓█████  ██▀███
+   ▒██    ▒  ██  ▓██▒▒██    ▒ ▓  ██▒ ▓▒▓█   ▀ ▓██ ▒ ██▒
+   ░ ▓██▄   ▓██  ▒██░░ ▓██▄   ▒ ▓██░ ▒░▒███   ▓██ ░▄█ ▒
+     ▒   ██▒▓▓█  ░██░  ▒   ██▒░ ▓██▓ ░ ▒▓█  ▄ ▒██▀▀█▄
+   ▒██████▒▒▒▒█████▓ ▒██████▒▒  ▒██▒ ░ ░▒████▒░██▓ ▒██▒
+   ▒ ▒▓▒ ▒ ░░▒▓▒ ▒ ▒ ▒ ▒▓▒ ▒ ░  ▒ ░░   ░░ ▒░ ░░ ▒▓ ░▒▓░
+   ░ ░▒  ░ ░░░▒░ ░ ░ ░ ░▒  ░ ░    ░     ░ ░  ░  ░▒ ░ ▒░
+   ░  ░  ░   ░░░ ░ ░ ░  ░  ░    ░         ░     ░░   ░
+         ░     ░           ░              ░  ░   ░
 ";
 
 pub const PRESS_ANY_KEY: &str = r#"
@@ -88,19 +88,23 @@ pub const TARBETU7: &str =
     "   T        A        R        B        E        T        U   - Ya bütün sırrı bozdun";
 
 pub const ABOUT: &str =
-">>> ./tarbetu
+r#">>> ./tarbetu
 Segmentation fault (core dumped)
 >>> gdb ./tarbetu core
 (gdb) bt
-Name’s Emrecan Şuşter, in case that wasn’t painfully obvious from whatever intro came before this. I’m the boring computer guy — the one who talks about compilers, type systems, and other stuff you probably couldn’t care less about.
+Name’s Emrecan Şuşter, in case that wasn’t painfully obvious from whatever intro came before this. City is İstanbul and what makes me busy is being a graduate student. I used to work in industry for a three years but I realized that I really did not enjoy to doing real stuff so I plan to switch into academia.
+
+I am interested with compilers and programming languages, maybe I can say that I feel obssesed with the automatic parallelism idea. I try to implement a programming language and my thesis focus on compilers. Yeah, let the other ones fine-tune the well-trained models and scam the academia with their contribution of 0.1% improvement.
 
 Once upon a time, I tried to become a sci-fi author. Turns out publishers don’t give a damn about cyberpunk dystopias or whatever weird political stuff could go down in Cyprus and Turkey. Pff. Their loss. (That novel took me ten years, by the way.)
 
 Then I thought, “Maybe psychology?” But in Turkey, trying to be a psychologist is a brilliant way to develop psychological problems. So I pivoted to computers — at least machines don’t pretend to care. In a country where R&D gets more funding than mental health, it's easier to debug code than society.
 
-Now I’m building my own programming language. Why? Because apparently I have a pathological fear of free time. It’s functional, pure, and lacks side-effects.
+You can found me around Bilgi University, the university turned off and on in three days by the IT depertmant, or Istanbul Technical University since I try to do some work with ITU. Also, I like to hang around Hackerspace İstanbul in these days.
 
-Still, I like to pretend I’m a social creature. You’ll find me coding at some cozy café in Kadıköy, ordering a filter coffee like it’s a personality trait. It’s the best way to simulate human interaction without actually being annoying.
+https://hackerspace.ist/
+
+Remind that I won't drink any kind of coffee with milk, but I still don't like the taste of coffee like a coal. This is why I really interested with third wave coffee. No, I am not, god-forbid, a hipster.
 
 So yeah — it’s more fun to compute.
 (gdb) info registers
@@ -115,9 +119,9 @@ https://github.com/Tarbetu
 https://linkedin.com/in/emrecan-suster
 (gdb) quit
 >>> echo $?
-126";
+126"#;
 
-pub const PORTFOLIO: &str = r#">>> ./portfolio 
+pub const PORTFOLIO: &str = r#">>> ./portfolio
 Pretend that I changed the world with these. It'd make me happy.
 Also, I did stuff at work. Secret, NDA, corporate mystery. Move on.
 
@@ -175,8 +179,53 @@ This is my personal website so I can list anything I want.
 ╭────────────────────────────────────────────────────╮
 │   PERSONAL SOUNDTRACK DUMP (no particular order)   │
 ╰────────────────────────────────────────────────────╯
+// When saying that, it's more fun to compute
+Kraftwerk - Computer World
 
-Rotting Christ - Theogonia 
+// My psychopatholocial problems named Industrial
+Einstürzende Neubauten - Alles in Allem
+mind.in.a.box - Dreamweb
+Krystal System - Underground
+Collide - Chasing the Ghost
+The Secret Meeting - Ultrashiver
+Android Lust - The Divide
+Angelspit - 100%
+Fad Gadget - Gag
+En Esch - Cheesy
+Mindless Faith - Manifest Destiny
+Velvet Acid Christ - The Art of Breaking Apart
+Skinny Puppy - Remission
+Skinny Puppy - Process
+Krystal System - Underground
+The Kovenant - Animatronik
+Eisenfunk - 8-Bit
+
+// From people who enjoy fun and masscare their neighors
+Kultur Shock - FUCC the INS
+Arkona - Goi, Rode, Goi!
+Russkaja - Energia
+Dubioza Kolektiv - Wild Wild East
+
+// Albums in these category should be accepted as a world cultural heritage
+Frank Zappa - Hot Rats
+Van Der Graff Generator - Pawn Hearts
+CCCP Fedeli Alla Linea - Epica Etnica Etnica Pathos
+Faun - Eden
+Gentle Giant - In a Glass House
+Magma - Mekanik destruktiw kommandoh
+
+// Gothic things still relies in my hart, OK?
+Siouxsie & The Banshees - Kaleidoscope
+Sisters Of Mercy - Floodland
+Sirenia - An Elixir for the Existence
+Sirenia - At Sixes and Sevens
+Threatre of Tragedy - Aegis
+Tristania - Widow's Weeds
+Ominous Grief - Nothing In Remembrance
+Penumbra - Seclusion
+
+// The Metal from my early teenager days
+Rotting Christ - Theogonia
 Rotting Christ - Triarchy of the Lost Lovers
 Thou Art Lord - DV6
 (I can list every Rotting Christ album except for the last one)
@@ -186,45 +235,16 @@ Moonspell - Sin/Pecado
 Septicflesh - Revolution DNA
 Septicflesh - Communion
 Nightfall - Diva Futura
-The Kovenant - Animatronik
-Ominous Grief - Nothing In Remembrance
 Type O Negative - Life Is Killing Me
 Type O Negative - Dead Again
 Tiamat - Prey
 Samael - Reign of Light
 Kurban - Yobaz
-Arkona - Goi, Rode, Goi!
-Einstürzende Neubauten - Alles in Allem
-Mindless Faith - Manifest Destiny
-Sirenia - An Elixir for the Existence 
-Sirenia - At Sixes and Sevens
-Threatre of Tragedy - Aegis
-Tristania - Widow's Weeds
-Siouxsie & The Banshees - Kaleidoscope
-Sisters Of Mercy - Floodlang
-Velvet Acid Christ - The Art of Breaking Apart
-Angelspit - 100%
-Skinny Puppy - Remission
-Skinny Puppy - Process
-Fad Gadget - Gag
-En Esch - Cheesy
-mind.in.a.box - Dreamweb
-Krystal System - Underground
-Collide - Chasing the Ghost
-The Secret Meeting - Ultrashiver
-Android Lust - The Divide
-Russkaja - Energia
-CCCP Fedeli Alla Linea - Epica Etnica Etnica Pathos
-Faun - Eden
-Penumbra - Seclusion
 Neurotech - Antagonist
-Gentle Giant - In a Glass House
-Magma - Mekanik destruktiw kommandoh
-Eisenfunk - 8-Bit
-~  
+~
 ~   Press esc to quit
-~   All tracks play best after 2AM with headphones on.  
-~  
+~   All tracks play best after 2AM with headphones on.
+~
 ";
 
 pub const ECHOES: &str = r#">>> ./echoes_from_my_mania
@@ -232,20 +252,16 @@ Echoes From My Mania is my blog, and it's not strictly about programming. I most
 
 Most of the posts are in Turkish — it's my native language, after all. But I also machine-translate them into English and then fix the translations manually.
 
-English:  
+English:
 https://emrecansuster.com/echoes
-Türkçe:  
+Türkçe:
 https://emrecansuster.com/yankilar"#;
 
 pub const KTH: &str = ">>> ./kara_tilki_hiyerarsisi
-Remember that sci-fi novel I mentioned in the debug output of `./tarbetu`?  
+Remember that sci-fi novel I mentioned in the debug output of `./tarbetu`?
 Well, I actually reached out to a publishing house — but the process took much longer than expected. It was a short-lived venture, and they tried to apply for funding from the Turkish Ministry of Culture and Tourism... using *this* novel.
 
 Yes, they really thought they’d get government support for a book centered around the fall of the Republic of Turkey, anarchism, mild fetishes, etc. Turns out they hadn’t even read it. Not shocking when you consider the working styles of publishing houses in Turkey.
 
-The novel lived on my personal website for years. Now, thanks to AI tools, I’ve translated it into English — with some manual clean-up. It covers sensitive themes, so consider yourself warned.
-
-English:  
-https://emrecansuster.com/hierarchyofvulponoir/
-Türkçe:  
-https://emrecansuster.com/karatilkihiyerarsisi/";
+I used to publish the book in that website, however I realized that I have to edit some things for the perfection. I plan to upload the new version if applicable.
+";

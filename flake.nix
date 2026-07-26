@@ -27,8 +27,10 @@
             uutils-diffutils
             gnumake
             gcc
+            llvmPackages.bintools
           ];
           RUST_SRC_PATH = rustPlatform.rustLibSrc;
+          CARGO_TARGET_WASM32_UNKNOWN_UNKNOWN_LINKER = "lld";
         };
       }
     );
