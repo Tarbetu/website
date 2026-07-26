@@ -1,4 +1,4 @@
 /target
 /dist
 /pkg
-/direnv
+/.direnv
