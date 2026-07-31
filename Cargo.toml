@@ -12,4 +12,4 @@ ratzilla = { git = "https://github.com/Emivvvvv/ratzilla.git", branch = "fix/ove
 console_error_panic_hook = "0.1.7"
 web-time = "1.1.0"
 console_log = "1.0.0"
-log = "0.4.27"
+log = "0.4.29"
