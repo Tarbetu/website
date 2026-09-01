@@ -87,8 +87,7 @@ pub const TARBETU6: &str = "   T        A        R        B        E        T   
 pub const TARBETU7: &str =
     "   T        A        R        B        E        T        U   - Ya bütün sırrı bozdun";
 
-pub const ABOUT: &str =
-r#">>> ./tarbetu
+pub const ABOUT: &str = r#">>> ./tarbetu
 Segmentation fault (core dumped)
 >>> gdb ./tarbetu core
 (gdb) bt
@@ -100,11 +99,13 @@ Once upon a time, I tried to become a sci-fi author. Turns out publishers don’
 
 Then I thought, “Maybe psychology?” But in Turkey, trying to be a psychologist is a brilliant way to develop psychological problems. So I pivoted to computers — at least machines don’t pretend to care. In a country where R&D gets more funding than mental health, it's easier to debug code than society.
 
-You can found me around Bilgi University, the university turned off and on in three days by the IT depertmant, or Istanbul Technical University since I try to do some work with ITU. Also, I like to hang around Hackerspace İstanbul in these days.
-
-https://hackerspace.ist/
+You can found me around Bilgi University, the university turned off and on in three days by the IT depertmant, or Istanbul Technical University since I try to do some work with ITU.
 
 Remind that I won't drink any kind of coffee with milk, but I still don't like the taste of coffee like a coal. This is why I really interested with third wave coffee. No, I am not, god-forbid, a hipster.
+
+Maybe you can check the blog:
+
+https://blog.emrecansuster.com
 
 So yeah — it’s more fun to compute.
 (gdb) info registers
@@ -247,15 +248,12 @@ Neurotech - Antagonist
 ~
 ";
 
-pub const ECHOES: &str = r#">>> ./echoes_from_my_mania
-Echoes From My Mania is my blog, and it's not strictly about programming. I mostly write about whatever I've been thinking lately.
+pub const ECHOES: &str = r#">>> ./blog
+It's not strictly about programming. I mostly write about whatever I've been thinking lately.
 
 Most of the posts are in Turkish — it's my native language, after all. But I also machine-translate them into English and then fix the translations manually.
 
-English:
-https://emrecansuster.com/echoes
-Türkçe:
-https://emrecansuster.com/yankilar"#;
+https://blog.emrecansuster.com/"#;
 
 pub const KTH: &str = ">>> ./kara_tilki_hiyerarsisi
 Remember that sci-fi novel I mentioned in the debug output of `./tarbetu`?

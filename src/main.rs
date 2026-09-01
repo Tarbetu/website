@@ -49,8 +49,8 @@ impl Background {
         Color::Rgb(100, 0, 200)
     }
 
-    const fn green() -> Color {
-        Color::Rgb(0x37, 0x5D, 0x37)
+    const fn yellow() -> Color {
+        Color::Rgb(0xFA, 0xFA, 0x37)
     }
 
     const fn lilac() -> Color {
@@ -63,15 +63,15 @@ impl Background {
             First => [
                 Background::blue_magenta(),
                 Background::lilac(),
-                Background::green(),
+                Background::yellow(),
             ],
             Second => [
                 Background::lilac(),
-                Background::green(),
+                Background::yellow(),
                 Background::blue_magenta(),
             ],
             Third => [
-                Background::green(),
+                Background::yellow(),
                 Background::blue_magenta(),
                 Background::lilac(),
             ],
